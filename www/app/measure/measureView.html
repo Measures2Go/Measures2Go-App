@@ -1,0 +1,36 @@
+<ion-view>
+  <ion-nav-title>
+    {{title}}
+  </ion-nav-title>
+  <ion-content>
+    <div class="list card" ng-repeat="d in data" ng-init="dataIndex = $index">
+      <div class="item item-divider item-text-wrap">
+        <b>{{d.name}}: </b>{{d.instructions}}
+      </div>
+
+      <label class="item item-radio" ng-repeat="o in d. options">
+        <input type="radio" name="group-{{dataIndex}}" value="{{o.value}}">
+        <div class="item-content item-text-wrap">
+          {{o.title}}
+        </div>
+        <i class="radio-icon ion-checkmark"></i>
+      </label>
+    </div>
+
+    <div class="list card" >
+      <div class="item item-divider">Summary</div>
+
+      <div class="item item-text-wrap">
+       Patient is at risk
+      </div>
+    </div>
+
+    <div class="content padding">
+      <button class="button button-block button-positive">
+        Save Results
+      </button>
+    </div>
+
+
+  </ion-content>
+</ion-view>
