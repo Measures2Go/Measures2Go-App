@@ -9,7 +9,7 @@
       </div>
 
       <label class="item item-radio" ng-repeat="o in d. options">
-        <input type="radio" name="group-{{dataIndex}}" value="{{o.value}}">
+        <input type="radio" name="group-{{dataIndex}}" value="{{o.value}}" ng-model="values[dataIndex]">
         <div class="item-content item-text-wrap">
           {{o.title}}
         </div>
@@ -21,16 +21,14 @@
       <div class="item item-divider">Summary</div>
 
       <div class="item item-text-wrap">
-       Patient is at risk
+       {{totalValue()}}: {{result()}}
       </div>
     </div>
-
+<!--
     <div class="content padding">
       <button class="button button-block button-positive">
         Save Results
       </button>
-    </div>
-
-
+    </div> -->
   </ion-content>
 </ion-view>
