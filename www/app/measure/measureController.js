@@ -1,4 +1,7 @@
 angular.module('measures2go')
+.controller('MeasureViewCtrl', function($scope, $stateParams, Measure) {
+
+})
 .controller('MeasureCtrl', function($scope, $stateParams, Measure) {
   Measure.getTest($stateParams.id, function(err, test) {
     $scope.title = test.name;

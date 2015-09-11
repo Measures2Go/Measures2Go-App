@@ -24,10 +24,11 @@ angular.module('measures2go', ['ionic'])
     templateUrl: 'app/home/aboutView.html',
     controller: 'AboutCtrl'
   })
-  .state('test', {
-    url: '/test/:id',
-    templateUrl: 'app/measure/measureView.html',
-    controller: 'MeasureCtrl'
+  .state('test-view', {
+    url: '/test/:id/view',
+    cache: false,
+    templateUrl: '/app/tests/berg-balance-scale.desc.html',
+    controller: 'MeasureViewCtrl'
   });
 
   // if none of the above states are matched, use this as the fallback

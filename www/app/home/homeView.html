@@ -7,7 +7,7 @@
           {{c.name}}
         </div>
 
-        <a class="item" ng-repeat="test in c.tests" type="item-text-wrap" href="#/test/{{test.id}}">
+        <a class="item" ng-repeat="test in c.tests" type="item-text-wrap" ui-sref="test-view({ id: test.id })">
           {{test.name}}
         </a>
       </div>
