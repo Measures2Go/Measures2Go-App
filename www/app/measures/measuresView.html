@@ -1,0 +1,17 @@
+<ion-view view-title="Measures2Go">
+  <ion-content >
+    <div class="list">
+
+      <div ng-repeat="c in categories">
+        <div class="item item-divider">
+          {{c.name}}
+        </div>
+
+        <a class="item" ng-repeat="test in c.tests" type="item-text-wrap" ui-sref="test-view({ id: test.id })">
+          {{test.name}}
+        </a>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>

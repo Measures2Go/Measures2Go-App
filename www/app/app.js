@@ -14,23 +14,71 @@ angular.module('measures2go', ['ionic'])
 })
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
-  .state('base', {
-    url: '/',
-    templateUrl: 'app/home/homeView.html',
-    controller: 'HomeCtrl'
+  .state('measures', {
+    url: '/measures',
+    templateUrl: "app/measures/measuresView.html",
+    controller: 'MeasuresCtrl'
   })
-  .state('about', {
-    url: '/about',
-    templateUrl: 'app/home/aboutView.html',
-    controller: 'AboutCtrl'
-  })
+  // .state('home', {
+  //   url: "/home",
+  //   abstract: true,
+  //   templateUrl: "app/home/homeView.html"
+  // })
+  // .state('home.measures', {
+  //   url: '/measures',
+  //   views: {
+  //     'measures-tab': {
+  //       templateUrl: "app/measures/measuresView.html",
+  //       controller: 'MeasuresCtrl'
+  //     }
+  //   }
+  // })
+  // .state('home.archive', {
+  //   url: '/archive',
+  //   views: {
+  //     'archive-tab': {
+  //       templateUrl: 'app/archives/archiveView.html',
+  //       controller: function() { }
+  //     }
+  //   }
+  // })
+  // .state('home.settings', {
+  //   url: '/settings',
+  //   views: {
+  //     'settings-tab': {
+  //       templateUrl: 'app/home/settingsView.html',
+  //       controller: function() { }
+  //     }
+  //   }
+  // })
+  // .state('home.about', {
+  //   url: '/about',
+  //   templateUrl: 'app/home/aboutView.html',
+  //   controller: 'AboutCtrl'
+  // })
+  // .state('base', {
+  //   url: '/',
+  //   templateUrl: 'app/home/homeView.html',
+  //   controller: 'HomeCtrl'
+  // })
   .state('test-view', {
     url: '/test/:id/view',
+    templateUrl: function ($stateParams){
+      alert($stateParams);
+      return '/app/tests/' + $stateParams.id + '.desc.html';
+    },
+    controller: function($scope, $stateParams) {
+      alert('shit');
+      $scope.id = $stateParams.id;
+    }
+  })
+  .state('test-take', {
+    url: '/test/:id/take',
     cache: false,
-    templateUrl: '/app/tests/berg-balance-scale.desc.html',
-    controller: 'MeasureViewCtrl'
-  });
+    templateUrl: 'app/measures/measureView.html',
+    controller: 'MeasureCtrl'
+  })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/measures');
 });

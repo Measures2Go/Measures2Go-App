@@ -1,17 +1,13 @@
-<ion-view view-title="Measures2Go">
-  <ion-content >
-    <div class="list">
+<ion-tabs class="tabs-icon-top tabs-positive">
+  <ion-tab title="Measures" icon="ion-home" ui-sref="home.measures">
+    <ion-nav-view name="measures-tab"></ion-nav-view>
+  </ion-tab>
 
-      <div ng-repeat="c in categories">
-        <div class="item item-divider">
-          {{c.name}}
-        </div>
+  <ion-tab title="Archive" icon="ion-ios-information" ui-sref="home.archive">
+    <ion-nav-view name="archive-tab"></ion-nav-view>
+  </ion-tab>
 
-        <a class="item" ng-repeat="test in c.tests" type="item-text-wrap" ui-sref="test-view({ id: test.id })">
-          {{test.name}}
-        </a>
-      </div>
-
-    </div>
-  </ion-content>
-</ion-view>
+  <ion-tab title="Settings" icon="ion-ios-world" ui-sref="home.settings">
+    <ion-nav-view name="settings-tab"></ion-nav-view>
+  </ion-tab>
+</ion-tabs>

@@ -10,6 +10,30 @@ angular.module('measures2go')
       .error(function() {
         callback(new Error('Unable to get tests'));
       });
+
+    // var categories = [{
+    //   "name": "Balance",
+    //   "tests": [
+    //     {
+    //       "name": "Berg Balance Scale",
+    //       "id": "berg-balance-scale"
+    //     },
+    //     {
+    //       "name": "Dynamic Gait Index",
+    //       "id": "dynamic-gait-index"
+    //     },
+    //     {
+    //       "name": "Functional Gait Analysis",
+    //       "id": "functional-gait-analysis"
+    //     },
+    //     {
+    //       "name": "Tinetti Performance Oriented Mobility Assessment",
+    //       "id": "tinetti"
+    //     }
+    //   ]
+    // }];
+    //
+    // callback(null, categories);
   }
 
 
