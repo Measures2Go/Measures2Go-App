@@ -1,0 +1,13 @@
+<ion-view>
+  <ion-nav-title>
+    {{name}}
+  </ion-nav-title>
+  <ion-content>
+    <div ng-include="viewLocation"></div>
+    <div class="content padding">
+      <button class="button button-block button-positive" ui-sref="test-take({ id: id })">
+        Start Test
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

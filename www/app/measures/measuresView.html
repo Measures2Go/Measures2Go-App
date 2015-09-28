@@ -1,13 +1,11 @@
 <ion-view view-title="Measures2Go">
   <ion-content >
     <div class="list">
-
-      <div ng-repeat="c in categories">
+      <div ng-repeat="(key, value) in categories">
         <div class="item item-divider">
-          {{c.name}}
+          {{value.name}}
         </div>
-
-        <a class="item" ng-repeat="test in c.tests" type="item-text-wrap" ui-sref="test-view({ id: test.id })">
+        <a class="item" ng-repeat="test in value.tests" type="item-text-wrap" ui-sref="test-view({ id: test.slug })">
           {{test.name}}
         </a>
       </div>

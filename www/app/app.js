@@ -1,4 +1,4 @@
-angular.module('measures2go', ['ionic'])
+angular.module('measures2go', ['ionic', 'ngIOS9UIWebViewPatch'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -15,7 +15,7 @@ angular.module('measures2go', ['ionic'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
   .state('measures', {
-    url: '/measures',
+    url: '/',
     templateUrl: "app/measures/measuresView.html",
     controller: 'MeasuresCtrl'
   })
@@ -63,22 +63,23 @@ angular.module('measures2go', ['ionic'])
   // })
   .state('test-view', {
     url: '/test/:id/view',
-    templateUrl: function ($stateParams){
-      alert($stateParams);
-      return '/app/tests/' + $stateParams.id + '.desc.html';
-    },
-    controller: function($scope, $stateParams) {
-      alert('shit');
+    cache: false,
+    templateUrl: 'app/measures/measureDescriptionView.html',
+    controller: function($scope, $stateParams, $sce, Measure) {
+      Measure.getTest($stateParams.id)
+        .then(function(test) {
+          $scope.name = test.name;
+        })
+      $scope.viewLocation = $sce.trustAsResourceUrl('http://measures2go.com/Measures2Go-Tests/measures/' + $stateParams.id + '.description.html');
       $scope.id = $stateParams.id;
     }
   })
   .state('test-take', {
     url: '/test/:id/take',
-    cache: false,
     templateUrl: 'app/measures/measureView.html',
     controller: 'MeasureCtrl'
   })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/measures');
+  $urlRouterProvider.otherwise('/');
 });

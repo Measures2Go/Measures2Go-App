@@ -2,51 +2,17 @@ angular.module('measures2go')
 .factory('Measure', function($http) {
   var service = {};
 
-  service.getCategories = function(callback) {
-    $http.get('http://measures2go.com/Measures2Go-Tests/categories.json')
-      .success(function(data) {
-        callback(null, data);
-      })
-      .error(function() {
-        callback(new Error('Unable to get tests'));
-      });
-
-    // var categories = [{
-    //   "name": "Balance",
-    //   "tests": [
-    //     {
-    //       "name": "Berg Balance Scale",
-    //       "id": "berg-balance-scale"
-    //     },
-    //     {
-    //       "name": "Dynamic Gait Index",
-    //       "id": "dynamic-gait-index"
-    //     },
-    //     {
-    //       "name": "Functional Gait Analysis",
-    //       "id": "functional-gait-analysis"
-    //     },
-    //     {
-    //       "name": "Tinetti Performance Oriented Mobility Assessment",
-    //       "id": "tinetti"
-    //     }
-    //   ]
-    // }];
-    //
-    // callback(null, categories);
+  service.getCategories = function() {
+    return $http.get('http://measures2go.com/Measures2Go-Tests/measures/index.json')
+      .then(function(x) { return x.data });
   }
 
-
-  service.getTest = function(id, callback) {
-    $http.get('http://measures2go.com/Measures2Go-Tests/index.json')
-      .success(function(data) {
-        var test = data.filter(function(x) {
-          return x.id === id
+  service.getTest = function(id) {
+    return $http.get('http://measures2go.com/Measures2Go-Tests/measures/index.json')
+      .then(function(r) {
+        return r.data.filter(function(x) {
+          return x.slug === id
         })[0];
-        callback(null, test);
-      })
-      .error(function() {
-        callback(new Error('Unable to get test: ' + id));
       });
   }
 
