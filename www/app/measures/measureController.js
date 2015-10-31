@@ -3,6 +3,7 @@ angular.module('measures2go')
   $scope.values = [];
   $scope.test = { results: [] };
   $scope.viewLocation = $sce.trustAsResourceUrl('http://measures2go.com/Measures2Go-Tests/measures/' + $stateParams.id + '.test.html');
+  //$scope.viewLocation = $sce.trustAsResourceUrl('http://localhost:4000/measures/' + $stateParams.id + '.test.html');
 
   $scope.totalValue = function() {
     var v = 0;
@@ -10,16 +11,6 @@ angular.module('measures2go')
       v += x * 1;
     })
     return v;
-  };
-
-  $scope.result = function() {
-    var x = $scope.totalValue();
-    for (var i = 0; i < $scope.test.results.length; i++) {
-      if (eval($scope.test.results[i].eval)) {
-        return $scope.test.results[i].result;
-      }
-    }
-    return '';
   };
 
   Measure.getTest($stateParams.id)

@@ -20,3 +20,8 @@
   visibility: visible;
 
 }
+
+.card > .item ul {
+  list-style: disc;
+  padding-left: 1em;
+}

@@ -1,4 +1,4 @@
-angular.module('measures2go', ['ionic', 'ngIOS9UIWebViewPatch'])
+var app = angular.module('measures2go', ['ionic', 'ngIOS9UIWebViewPatch'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -12,7 +12,9 @@ angular.module('measures2go', ['ionic', 'ngIOS9UIWebViewPatch'])
     }
   });
 })
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $controllerProvider) {
+  app.controllerProvider = $controllerProvider;
+
   $stateProvider
   .state('measures', {
     url: '/',
@@ -71,6 +73,7 @@ angular.module('measures2go', ['ionic', 'ngIOS9UIWebViewPatch'])
           $scope.name = test.name;
         })
       $scope.viewLocation = $sce.trustAsResourceUrl('http://measures2go.com/Measures2Go-Tests/measures/' + $stateParams.id + '.description.html');
+      //$scope.viewLocation = $sce.trustAsResourceUrl('http://localhost:4000/measures/' + $stateParams.id + '.description.html');
       $scope.id = $stateParams.id;
     }
   })
