@@ -6,7 +6,17 @@ import {
   TouchableHighlight,
   View,
 } from "react-native";
-import * as Measures from "./Measures";
+
+const data = [
+  {
+    title: "Cool beans",
+    data: [
+      {
+        title: "Test",
+      },
+    ],
+  },
+];
 
 interface IItemProps {
   title: string;
@@ -35,13 +45,9 @@ export default function ({ navigation }: IProps) {
   return (
     <SectionList
       style={styles.list}
-      sections={Measures.navigation}
+      sections={data}
       renderItem={({ item }) => (
-        <Item
-          title={item.title}
-          link={`Measure:${item.title}`}
-          navigation={navigation}
-        />
+        <Item title={item.title} navigation={navigation} />
       )}
       keyExtractor={(item, index) => item.title + index}
       renderSectionHeader={({ section: { title } }) => (
