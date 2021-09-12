@@ -36,8 +36,10 @@ const data = [
   },
 ];
 
-const instructions =
-  "Tinetti Performance-Oriented Mobility Assessment helps quantify evaluation of older adults' gait and balance. Chair, watch/timer and short walkway are required. The test is split into balance and gait subsections. Separate and total scores will be provided.";
+const instructions = [
+  "Tinetti Performance-Oriented Mobility Assessment helps quantify evaluation of older adults' gait and balance. Chair, watch/timer and short walkway are required. The test is split into balance and gait subsections. Separate and total scores will be provided.",
+  "Instructions to patient are provided beneath each item name",
+];
 
 function renderResult(total: number) {
   let result = "";
@@ -53,7 +55,7 @@ function renderResult(total: number) {
   return (
     <React.Fragment>
       <Text style={styles.summaryHeader}>Total Score: {total}</Text>
-      <Text style={styles.detail}>Diagnosis: {result}</Text>
+      <Text style={styles.detail}>Interpretation: {result}</Text>
 
       <Text style={{ marginTop: 12, fontSize: 24, marginBottom: 5 }}>
         References:

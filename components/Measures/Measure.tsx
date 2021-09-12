@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View,
-} from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
+import { FlatList, StyleSheet, Text, View } from "react-native";
+import SelectableItem from "../SelectableItem";
 
 type MeasureData = {
   type: "data";
@@ -25,25 +19,42 @@ type MeasureHeader = {
 type MeasureItem = MeasureHeader | MeasureData;
 
 interface IIntroductionProps {
-  text: string;
+  text: string | ReadonlyArray<string>;
 }
 
 const Introduction = React.memo(({ text }: IIntroductionProps) => {
+  const textItems = Array.isArray(text) ? text : [text];
+
   return (
     <View style={styles.introduction}>
-      <Text style={styles.introductionText}>{text}</Text>
+      {textItems.map((x, idx) => (
+        <Text
+          style={[
+            styles.introductionText,
+            idx > 0 ? styles.topMargin : undefined,
+          ]}
+        >
+          {x}
+        </Text>
+      ))}
     </View>
   );
 });
 
 interface ISummaryProps {
   total: number;
-  renderResult: (result: number) => React.ReactNode;
+  breakdown: Map<number, number>;
+  renderResult: (
+    result: number,
+    breakdown: Map<number, number>
+  ) => React.ReactNode;
 }
 
-const Summary = React.memo(({ renderResult, total }: ISummaryProps) => {
-  return <View style={styles.summary}>{renderResult(total)}</View>;
-});
+const Summary = React.memo(
+  ({ renderResult, total, breakdown }: ISummaryProps) => {
+    return <View style={styles.summary}>{renderResult(total, breakdown)}</View>;
+  }
+);
 
 interface IItemProps {
   readonly item: MeasureItem;
@@ -58,18 +69,11 @@ const Item = React.memo(({ item, onPress, checked }: IItemProps) => {
 
   if (item.type === "data") {
     return (
-      <TouchableHighlight onPress={handlePress} underlayColor="#ddd">
-        <View style={styles.item}>
-          <Icon
-            name={checked ? "checkmark-circle" : "ellipse-outline"}
-            size={22}
-            color="#000000"
-          />
-          <Text style={styles.itemText}>
-            ({item.value}) {item.text}
-          </Text>
-        </View>
-      </TouchableHighlight>
+      <SelectableItem
+        text={`(${item.value}) ${item.text}`}
+        handlePress={handlePress}
+        checked={checked}
+      />
     );
   } else if (item.type === "title") {
     return (
@@ -97,7 +101,10 @@ export interface IMeasureItem {
 export interface IProps {
   items: ReadonlyArray<IMeasureItem>;
   instructions: string;
-  renderResult: (result: number) => React.ReactNode;
+  renderResult: (
+    result: number,
+    breakdown: Map<number, number>
+  ) => React.ReactNode;
 }
 
 export default function ({ items, renderResult, instructions }: IProps) {
@@ -157,7 +164,13 @@ export default function ({ items, renderResult, instructions }: IProps) {
       ListHeaderComponent={() => <Introduction text={instructions} />}
       ListFooterComponent={() => {
         const total = [...checked.values()].reduce((a, v) => a + v, 0);
-        return <Summary total={total} renderResult={renderResult} />;
+        return (
+          <Summary
+            total={total}
+            breakdown={checked}
+            renderResult={renderResult}
+          />
+        );
       }}
       renderItem={({ item }) => {
         return (
@@ -225,5 +238,8 @@ export const styles = StyleSheet.create({
   },
   introductionText: {
     fontSize: 20,
+  },
+  topMargin: {
+    marginTop: 8,
   },
 });

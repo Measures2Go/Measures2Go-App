@@ -289,8 +289,10 @@ const data = [
   },
 ];
 
-const instructions =
-  "Berg Balance Scale is used to assess balance and predict fall risk among community-living older adults. Yardstick, chair, and footstool are required.";
+const instructions = [
+  "Berg Balance Scale is used to assess balance and predict fall risk among community-living older adults. Yardstick, chair, and footstool are required.",
+  "Instructions to patient are provided beneath each item name",
+];
 
 function renderResult(total: number) {
   let result = "";
@@ -306,7 +308,7 @@ function renderResult(total: number) {
   return (
     <React.Fragment>
       <Text style={styles.summaryHeader}>Total Score: {total}</Text>
-      <Text style={styles.detail}>Diagnosis: {result}</Text>
+      <Text style={styles.detail}>Interpretation: {result}</Text>
 
       <Text style={{ marginTop: 12, fontSize: 24, marginBottom: 5 }}>
         References:

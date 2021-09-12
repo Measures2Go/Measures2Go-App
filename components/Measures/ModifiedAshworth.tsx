@@ -5,18 +5,29 @@ import HyperlinkText from "../HyperlinkText";
 export default function () {
   return (
     <ScrollView style={styles.root}>
-      <View>
-        <Text>
-          Modified Ashworth is used for grading spasticity 0 - No increase in
-          muscle tone 1 - Slight increase in muscle tone, manifested by catch
-          and release or minimal resistance at end range 1+ Slight increase in
-          muscle tone, manifested by catch followed by minimal resistance
-          through remainder (less than half) of ROM 2 - More marked increase in
-          muscle tone through most of ROM, but affected part easily moved 3 -
-          Considerable increase in muscle tone, passive movement difficult 4 -
-          Affected part(s) rigid in flexion or extension
+      <View style={styles.view}>
+        <Text style={styles.title}>
+          Modified Ashworth is used for grading spasticity
         </Text>
-
+        <Text style={styles.value}>0 - No increase in muscle tone</Text>
+        <Text style={styles.value}>
+          1 - Slight increase in muscle tone, manifested by catch and release or
+          minimal resistance at end range
+        </Text>
+        <Text style={styles.value}>
+          1+ Slight increase in muscle tone, manifested by catch followed by
+          minimal resistance through remainder (less than half) of ROM
+        </Text>
+        <Text style={styles.value}>
+          2 - More marked increase in muscle tone through most of ROM, but
+          affected part easily moved
+        </Text>
+        <Text style={styles.value}>
+          3 - Considerable increase in muscle tone, passive movement difficult
+        </Text>
+        <Text style={styles.value}>
+          4 -Affected part(s) rigid in flexion or extension
+        </Text>
         <Text style={{ marginTop: 12, fontSize: 24, marginBottom: 5 }}>
           References:
         </Text>
@@ -39,5 +50,20 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
+  },
+  text: {
+    fontSize: 18,
+  },
+  value: {
+    fontSize: 18,
+    padding: 8,
+    marginTop: 1,
+  },
+  view: {
+    padding: 8,
+  },
+  title: {
+    fontSize: 19,
+    fontWeight: "600",
   },
 });

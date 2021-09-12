@@ -3,8 +3,10 @@ import { StyleSheet, Text, View } from "react-native";
 import HyperlinkText from "../HyperlinkText";
 import Measure from "./Measure";
 
-const instructions =
-  "DGI is used to assess fall risk in older adults. Shoebox, 2 cones, stairs and a short walkway are required. For each item, score the lowest which applies.";
+const instructions = [
+  "DGI is used to assess fall risk in older adults. Shoebox, 2 cones, stairs and a short walkway are required. For each item, score the lowest which applies.",
+  "Instructions to patient are provided beneath each item name",
+];
 
 const data = [
   {
@@ -192,7 +194,7 @@ function renderResult(total: number) {
   return (
     <React.Fragment>
       <Text style={styles.summaryHeader}>Total Score: {total} / 24</Text>
-      {warning && <Text style={styles.detail}>Diagnosis: {warning}</Text>}
+      {warning && <Text style={styles.detail}>Interpretation: {warning}</Text>}
     </React.Fragment>
   );
 }

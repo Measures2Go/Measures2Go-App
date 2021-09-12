@@ -29,5 +29,6 @@ export default function HyperlinkText({ href, style, children }: IProps) {
 const styles = StyleSheet.create({
   link: {
     color: "blue",
+    fontSize: 18,
   },
 });
