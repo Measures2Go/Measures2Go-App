@@ -11,6 +11,7 @@ import ModifiedAshworth from "./ModifiedAshworth";
 import ModifiedEssentialFrailtyToolset from "./ModifiedEssentialFrailtyToolset";
 import TimedUpAndGo from "./TimedUpAndGo";
 import Tinetti from "./Tinetti";
+import RASS from "./RASS";
 
 export type Navigation = ReadonlyArray<{
   readonly title: string;
@@ -91,6 +92,10 @@ export const navigation: Navigation = [
       {
         title: "Edema Grades",
         component: Edema,
+      },
+       {
+        title: "RASS",
+        component: RASS,
       },
     ],
   },
