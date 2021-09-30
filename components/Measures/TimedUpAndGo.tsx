@@ -27,9 +27,9 @@ export default function () {
   return (
     <ScrollView style={styles.root}>
       <View style={styles.view}>
-        {data.map((val) => {
+        {data.map((val, idx) => {
           return (
-            <React.Fragment>
+            <React.Fragment key={idx}>
               <Text style={styles.title}>{val.title}</Text>
               {Array.isArray(val.text) ? (
                 val.text.map((t) => <Text style={styles.value}>{t}</Text>)
