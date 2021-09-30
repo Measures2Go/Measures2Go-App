@@ -6,7 +6,7 @@ import {
   TouchableHighlight,
   View,
 } from "react-native";
-import { InAppBrowser } from "react-native-inappbrowser-reborn";
+import * as WebBrowser from "expo-web-browser";
 
 const data = [
   {
@@ -60,17 +60,7 @@ const data = [
 ];
 
 async function showLink(url: string) {
-  if (!(await InAppBrowser.isAvailable())) {
-    console.error("WTF");
-    return;
-  }
-
-  InAppBrowser.open(url, {}).then(
-    () => {},
-    (err) => {
-      console.error(err);
-    }
-  );
+  await WebBrowser.openBrowserAsync(url);
 }
 
 interface IItemProps {

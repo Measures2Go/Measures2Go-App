@@ -29,6 +29,7 @@ const Introduction = React.memo(({ text }: IIntroductionProps) => {
     <View style={styles.introduction}>
       {textItems.map((x, idx) => (
         <Text
+          key={idx}
           style={[
             styles.introductionText,
             idx > 0 ? styles.topMargin : undefined,
